@@ -1,0 +1,25 @@
+.jumbotron {
+  background-image: url('../assets/img/forgotpass.png');
+  background-size: cover;
+}
+
+.btn {
+  height: 50px;
+  width: 150px;
+  background-color: #ffba33;
+  color: #6a4029;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.form-control {
+  height: 50px;
+  margin-top: 20px;
+}
+
+.b {
+  height: 50px;
+  width: 150px;
+  background-color: #6a4029;
+  font-weight: 700;
+  border-radius: 5px;
+}

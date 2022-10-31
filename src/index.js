@@ -1,13 +1,24 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
+// import SignUp from './pages/SignUp';
+// import Login from './pages/Login';
+// import Product from './pages/Product';
+
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    {/* <Login /> */}
+    {/* <SignUp /> */}
+    {/* <Product /> */}
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

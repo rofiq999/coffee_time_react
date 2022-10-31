@@ -1,0 +1,399 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  left: 1px;
+  top: 0px;
+}
+.from-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.head {
+  display: flex;
+  margin: 40px 0px 25px 0px;
+}
+
+.login {
+  width: 130px;
+  height: 45px;
+  background: #ffba33;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: -60px;
+  margin-left: 88px;
+}
+
+.coffee {
+  /* display: flex; */
+  font-weight: bold;
+  font-size: 15px;
+  align-items: center;
+  margin-right: 503px;
+  text-decoration: none;
+  color: #0b132a;
+}
+
+.sign {
+  width: 133px;
+  height: 41px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 29px;
+  line-height: 41px;
+  text-align: center;
+  margin-left: -268px;
+  color: #6a4029;
+}
+
+.register-form {
+  background-color: white;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.from-content,
+.side-content,
+.app-info,
+.address,
+.other,
+.btn-secondary {
+  flex: 1;
+}
+
+.input-label {
+  display: block;
+  height: 10px;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.full-width {
+  width: 505px;
+  height: 75px;
+  left: 810px;
+  top: 100px;
+  margin-left: -276px;
+}
+
+.input-div {
+  width: 80%;
+  margin: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  position: absolute;
+  width: 405px;
+  height: 50px;
+  left: 950px;
+  top: 470px;
+  border-radius: 20px;
+}
+
+#forgot-pass {
+  width: 232px;
+  height: 25px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: -149px;
+  margin-bottom: 34px;
+  text-decoration-line: none;
+  color: #6a4029;
+}
+
+.input-div-primary {
+  background-color: #ffba33;
+  text-align: center;
+  margin-left: 65px;
+  border-radius: 50px;
+  width: 450px;
+  padding: 13px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: #6a4029;
+}
+
+.link-login a {
+  text-transform: none;
+  color: #6a4029;
+}
+
+.input-div-secondary {
+  width: 419px;
+  background-color: #ffff;
+  box-shadow: 0px 3px 5px;
+  margin-top: 20px;
+  border-radius: 20px;
+  height: 250px;
+  text-align: center;
+  padding: 10px;
+  margin-left: 60px;
+}
+
+.input-div-secondary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.free-member {
+  position: absolute;
+  width: 1140px;
+  height: 233px;
+  bottom: -50px;
+  left: 10%;
+  right: 10%;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  align-items: center;
+}
+
+.member-card {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 32px;
+}
+
+.free-member a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  align-items: center;
+  width: 200px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: 700;
+  background: #ffba33;
+  border-radius: 10px;
+}
+
+.free-member h2 {
+  width: 300px;
+  height: 80px;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  color: #0b132a;
+}
+
+.free-member p {
+  width: 410px;
+  height: 16px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+
+  color: #4f5665;
+}
+
+footer {
+  width: 1440px;
+  height: 528px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  background-color: #f8f8f8;
+}
+
+.footer-left {
+  margin-top: 80px;
+  margin-left: -170px;
+}
+
+.footer-left,
+.footer-right {
+  flex: 1;
+}
+
+.address ol li {
+  list-style: none;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #4f5665;
+}
+
+.address h2 {
+  margin-left: 13%;
+  font-size: 18px;
+  color: #0b132a;
+  font-weight: 500px;
+}
+
+.footer-right {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-detail {
+  position: relative;
+  display: flex;
+  margin-top: 20px;
+  width: 20%;
+  cursor: pointer;
+}
+
+.logo-detail {
+  display: flex;
+  align-items: center;
+}
+
+.image-detail {
+  width: 1.6em;
+  margin-right: 10px;
+}
+
+.text-content {
+  margin-top: 20px;
+  width: 60%;
+  font-size: 16px;
+  color: #4f5665;
+}
+
+.sosmed-detail {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-top: 19px;
+  width: 20%;
+  left: 150px;
+  gap: 4em;
+  cursor: pointer;
+  bottom: -189px;
+}
+
+.img-logo {
+  position: absolute;
+  overflow: hidden;
+  object-fit: cover;
+  left: 5px;
+}
+
+.box {
+  display: flex;
+  position: relative;
+}
+
+.text-copyright {
+  width: 142px;
+  height: 30px;
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 30px;
+  margin-top: 70px;
+  text-align: center;
+  color: #afb5c0;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    position: absolute;
+    display: flex;
+    top: 850px;
+  }
+  .member-card {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 32px;
+    margin-top: 1100px;
+  }
+
+  .side-image {
+    display: none;
+  }
+
+  .free-member {
+    position: absolute;
+    width: 501px;
+    height: 176px;
+    left: 88px;
+    background: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 36px;
+    top: 696px;
+    align-items: flex-end;
+  }
+
+  /* .coffee {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 13px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0b132a;
+  } */
+
+  .coffee a {
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 13px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0b132a;
+  }
+
+  .full-width {
+    width: 505px;
+    height: 700px;
+    left: 810px;
+    top: 100px;
+    margin-left: -276px;
+  }
+
+  .secondary {
+    width: 419px;
+    background-color: #ffff;
+    box-shadow: 0px 3px 5px;
+    margin-top: 20px;
+    border-radius: 20px;
+    height: 36px;
+    text-align: center;
+    padding: 10px;
+    margin-left: 60px;
+  }
+}
