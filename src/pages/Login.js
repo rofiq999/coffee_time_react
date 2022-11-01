@@ -57,7 +57,7 @@ function Login() {
   const handleApi = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:7070/coffe_time/auth', {
+      .post(`${process.env.REACT_APP_BACKEND_HOST}coffe_time/auth`, {
         email,
         password,
       })
