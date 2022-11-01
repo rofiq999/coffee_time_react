@@ -37,7 +37,7 @@ function Navbar() {
           <Link to="#" className="nav-link d-none d-sm-block d-md-none d-lg-block d-sm-none">
             <img src={icon_chat} alt="" widht="30" height="30" />
           </Link>
-          <Link to="#" className="nav-link">
+          <Link to="/profile" className="nav-link">
             <img className={styles.img_userprofile} src={icon_profile} alt="" widht="30" height="30" />
           </Link>
           <Link to="#" className="nav-link d-lg-none d-sm-block">
