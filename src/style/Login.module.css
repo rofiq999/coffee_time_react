@@ -7,6 +7,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: row;
+  height: 930px;
 }
 
 .left {
@@ -21,41 +22,36 @@ body {
 
 .head {
   display: flex;
-  margin: 40px 0px 25px 0px;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 37px;
+  gap: 15rem;
 }
 
 .login {
   width: 130px;
-  height: 45px;
+  height: 40px;
   background: #ffba33;
-  border-radius: 50px;
-  font-weight: 500;
-  font-size: 16px;
-  margin-top: -60px;
-  margin-left: 88px;
-}
-
-.coffee {
-  /* display: flex; */
-  font-weight: bold;
-  font-size: 15px;
-  align-items: center;
-  margin-right: 503px;
-  text-decoration: none;
-  color: #0b132a;
-}
-
-.sign {
-  width: 133px;
-  height: 41px;
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 29px;
-  line-height: 41px;
-  text-align: center;
-  margin-left: -268px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 20px;
   color: #6a4029;
+  margin-left: 0;
+  border: none;
+}
+
+.coffee-left {
+  text-decoration: none;
+  color: black;
+  font-size: 19px;
+  font-weight: 700;
+}
+.sign {
+  text-align: center;
+  font-weight: 700;
+  font-size: 29px;
+  color: #6a4029;
+  margin: 0;
 }
 
 .register-form {
@@ -77,19 +73,19 @@ body {
 
 .input-label {
   display: block;
-  height: 10px;
+  height: 59px;
   width: 100%;
   margin-top: 5px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 20px;
 }
 
 .full-width {
-  width: 505px;
-  height: 75px;
-  left: 810px;
-  top: 100px;
-  margin-left: -276px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 483px;
+  margin: 0;
 }
 
 .input-div {
@@ -128,40 +124,37 @@ form {
 
 .input-div-primary {
   background-color: #ffba33;
-  text-align: center;
-  margin-left: 65px;
-  border-radius: 50px;
-  width: 450px;
-  padding: 13px;
-  font-family: 'Rubik';
-  font-style: normal;
-  font-weight: 600;
+  border-radius: 10px;
+  width: 384px;
+  height: 52px;
+  font-weight: 700;
   font-size: 20px;
-  line-height: 25px;
-  color: #6a4029;
+  border: none;
 }
 
-.link-login a {
-  text-transform: none;
+.link-login {
+  text-decoration: none;
   color: #6a4029;
-}
-
-.input-div-secondary {
-  width: 419px;
-  background-color: #ffff;
-  box-shadow: 0px 3px 5px;
-  margin-top: 20px;
-  border-radius: 20px;
-  height: 250px;
-  text-align: center;
-  padding: 10px;
-  margin-left: 60px;
 }
 
 .input-div-secondary {
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 10px;
+  width: 385px;
+  background-color: #ffff;
+  box-shadow: 0px 3px 5px;
+  margin-top: 38px;
+  border-radius: 10px;
+  height: 54px;
+  border: none;
+}
+
+.with-google {
+  font-size: 19px;
+  font-weight: 700;
 }
 
 .free-member {
@@ -221,13 +214,16 @@ form {
   line-height: 30px;
   display: flex;
   align-items: center;
-
   color: #4f5665;
 }
 
+.btn-create {
+  color: #6a4029;
+}
+
 footer {
-  width: 1440px;
-  height: 528px;
+  width: 100%;
+  height: 400px;
   display: flex;
   justify-content: space-between;
   margin-bottom: 80px;
@@ -305,7 +301,7 @@ footer {
   position: absolute;
   overflow: hidden;
   object-fit: cover;
-  left: 5px;
+  left: -59px;
 }
 
 .box {
@@ -326,11 +322,29 @@ footer {
   color: #afb5c0;
 }
 
-@media only screen and (max-width: 768px) {
-  .footer {
-    position: absolute;
+@media only screen and (max-width: 600px) {
+  .foot {
+    width: 100%;
+    height: 50%;
     display: flex;
-    top: 850px;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #f8f8f8;
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .footer-right {
+    margin: 0;
+    display: flex;
+    gap: 7rem;
+    align-items: start;
   }
   .member-card {
     font-family: 'Rubik';
@@ -341,59 +355,142 @@ footer {
     margin-top: 1100px;
   }
 
+  .member-card p {
+    display: flex;
+    align-items: flex-start;
+    width: 205px;
+    height: 0px;
+  }
+
   .side-image {
     display: none;
   }
 
   .free-member {
     position: absolute;
-    width: 501px;
-    height: 176px;
-    left: 88px;
+    width: 100%;
     background: #ffffff;
     border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    padding: 36px;
-    top: 696px;
-    align-items: flex-end;
+    top: 600px;
+    align-items: end;
+    left: 0px;
   }
 
-  /* .coffee {
+  .coffee {
     font-weight: bold;
-    font-size: 15px;
-    margin-left: 13px;
     font-size: 20px;
-    line-height: 24px;
+    text-decoration: none;
     color: #0b132a;
-  } */
-
-  .coffee a {
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 13px;
-    font-size: 20px;
-    line-height: 24px;
-    color: #0b132a;
+    margin: 0 auto;
   }
-
   .full-width {
-    width: 505px;
-    height: 700px;
-    left: 810px;
-    top: 100px;
-    margin-left: -276px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: 492px;
+    height: 100%;
+    background-color: whitesmoke;
   }
 
-  .secondary {
-    width: 419px;
+  .input-div-primary {
+    background-color: #ffba33;
+    border-radius: 12px;
+    width: 396px;
+    height: 52px;
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .link-login {
+    text-decoration: none;
+    color: #6a4029;
+    font-weight: 700;
+    font-size: 21px;
+  }
+
+  .input-div-secondary {
+    width: 396px;
+    height: 50px;
     background-color: #ffff;
     box-shadow: 0px 3px 5px;
-    margin-top: 20px;
-    border-radius: 20px;
-    height: 36px;
+    margin: 0;
+    margin-top: 30px;
+    border-radius: 10px;
     text-align: center;
-    padding: 10px;
-    margin-left: 60px;
+  }
+
+  .input-label {
+    height: 68px;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .sign {
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-size: 29px;
+    margin-left: 0;
+    color: #6a4029;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    gap: 16rem;
+  }
+
+  .login {
+    width: 140px;
+    height: 45px;
+    background: #ffba33;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 19px;
+    margin-left: auto;
+    color: #6a4029;
+  }
+
+  .side-content {
+    display: none;
+  }
+  .from-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    flex: none;
+  }
+
+  .with-google {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .btn-create {
+    width: 177px;
+    height: 51px;
+    color: #6a4029;
+  }
+
+  .address ol {
+    width: 157px;
+  }
+
+  .address h2 {
+    margin-left: 32px;
+  }
+
+  .sosmed-detail {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+    bottom: 131px;
+    cursor: pointer;
+    left: 24px;
   }
 }

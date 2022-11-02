@@ -17,14 +17,14 @@ class SignUp extends Component {
       <Fragment>
         <main className={styles.container}>
           <aside className={styles['side-content']}>
-            <img className={styles['side-image']} src={logo} height="1100px" width="682px" alt="coffe-shop" />
+            <img className={styles['side-image']} src={logo} height="900px" width="682px" alt="coffe-shop" />
           </aside>
           <section className={styles['from-content']}>
             <div className={styles['head']}>
-              <a className={styles['img']}>
+              <a className={styles['left']}>
                 <img src={coffee} alt="coffe-shop" />
+                Coffee Time
               </a>
-              <a className={styles['coffee']}>Coffee Time</a>
               <button className={styles['login']}>Login</button>
             </div>
             <p className={styles['sign']}>Sign Up</p>

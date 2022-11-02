@@ -77,18 +77,16 @@ function Login() {
     <>
       <main className={styles.container}>
         <aside className={styles['side-content']}>
-          <img className={styles['side-image']} src={logo} height="1100px" width="682px" alt="coffe-shop" />
+          <img className={styles['side-image']} src={logo} height="900px" width="682px" alt="coffe-shop" />
         </aside>
         <section className={styles['from-content']}>
           <div className={styles['head']}>
-            <a href="#">
+            <a href="#" className={styles['coffee-left']}>
               <img src={coffee} alt="coffe-shop" />
-            </a>
-            <a href="#" className={styles['coffee']}>
               Coffee Time
             </a>
+            <button className={styles['login']}>Sign Up</button>
           </div>
-          <button className={styles['login']}>Sign Up</button>
           <p className={styles['sign']}>Login</p>
           <section className={styles['register-form']} id="register">
             <form className={styles['full-width']} onSubmit={handleApi}>
@@ -113,7 +111,7 @@ function Login() {
               </button>
               <button className={styles['input-div-secondary']}>
                 <img src={google} alt="Google" />
-                <p>Login with Google</p>
+                <p className={styles['with-google']}>Login with Google</p>
               </button>
             </form>
           </section>
@@ -126,7 +124,7 @@ function Login() {
           <a className={styles['btn-create']}>Create Now</a>
         </section>
       </main>
-      <footer>
+      <footer className={styles['foot']}>
         <div className={styles['sosmed-detail']}>
           <div className={styles['box']}>
             <div className={styles['back-logo']}></div>
