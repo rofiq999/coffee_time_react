@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import withNavigate from '../helper/withNavigate';
+// import withNavigate from '../helper/withNavigate';
 import axios from 'axios';
 import styles from '../style/Login.module.css';
 import title from '../helper/title';
@@ -55,6 +55,7 @@ function Login() {
   };
 
   const handleApi = (e) => {
+    console.log(email, password);
     e.preventDefault();
     axios
       .post(`${process.env.REACT_APP_BACKEND_HOST}coffe_time/auth`, {
@@ -63,8 +64,10 @@ function Login() {
       })
       .then((response) => {
         alert('Login Success');
+        console.log(response.data.result.data.payload.role);
         console.log(response.data.result.data.token);
-        localStorage.setItem('token', JSON.stringify(response.data.result.data.token));
+        localStorage.setItem('token', response.data.result.data.token);
+        localStorage.setItem('role', response.data.result.data.payload.role);
         navigate('/');
       })
       .catch((err) => {
@@ -81,15 +84,15 @@ function Login() {
         </aside>
         <section className={styles['from-content']}>
           <div className={styles['head']}>
-            <a href="#" className={styles['coffee-left']}>
+            <Link className={styles['coffee-left']}>
               <img src={coffee} alt="coffe-shop" />
               Coffee Time
-            </a>
+            </Link>
             <button className={styles['login']}>Sign Up</button>
           </div>
           <p className={styles['sign']}>Login</p>
-          <section className={styles['register-form']} id="register">
-            <form className={styles['full-width']} onSubmit={handleApi}>
+          <form className={styles['register-form']} id="register" onSubmit={handleApi}>
+            <section className={styles['full-width']}>
               <div className={styles['input-div']}>
                 <label>Email Address:</label>
                 <input className={styles['input-label']} type="text" placeholder="Enter your email address" onChange={handleEmail} />
@@ -107,21 +110,21 @@ function Login() {
                 Forgot Password?
               </Link>
               <button className={styles['input-div-primary']}>
-                <a className={styles['link-login']}>Login</a>
+                <p className={styles['link-login']}>Login</p>
               </button>
               <button className={styles['input-div-secondary']}>
                 <img src={google} alt="Google" />
                 <p className={styles['with-google']}>Login with Google</p>
               </button>
-            </form>
-          </section>
+            </section>
+          </form>
         </section>
         <section className={styles['free-member']}>
           <div className={styles['member-card']}>
             <h2>Get your member card now!</h2>
             <p>Lets's join with our member and enjoy the deals.</p>
           </div>
-          <a className={styles['btn-create']}>Create Now</a>
+          <Link className={styles['btn-create']}>Create Now</Link>
         </section>
       </main>
       <footer className={styles['foot']}>

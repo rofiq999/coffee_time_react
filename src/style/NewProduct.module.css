@@ -1,0 +1,36 @@
+.text {
+  color: #6a4029;
+  font-weight: 700;
+}
+
+.content-left {
+  background: rgba(186, 186, 186, 0.35);
+  width: 50%;
+  height: 190px;
+  border-radius: 100px;
+}
+
+.btn-picture {
+  width: 200px;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+}
+.btn-galery {
+  width: 200px;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  background-color: #ffba33;
+}
+
+.delivery {
+  color: #6a4029;
+}
+
+.stock {
+  color: #6a4029;
+}

@@ -32,9 +32,8 @@ class Product extends Component {
   }
 
   componentDidUpdate() {
-    this.onFood = () => {
-      axios.get(this.state.food).then((res) => this.setState({ products: res.data.result.data }));
-    };
+    this.onFood = () => {};
+    axios.get(this.state.food).then((res) => this.setState({ products: res.data.result.data }));
     this.onCoffee = () => {
       axios.get(this.state.coffee).then((res) => this.setState({ products: res.data.result.data }));
     };

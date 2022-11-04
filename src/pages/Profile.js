@@ -119,6 +119,7 @@ function Profile() {
                 <span
                   onClick={() => {
                     localStorage.removeItem('token');
+                    localStorage.removeItem('role');
                     navigate('/login');
                   }}
                   className={`${styles.btn_utility} ${styles.logout}`}

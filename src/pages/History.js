@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import styles from '../style/History.module.css';
 import Card from '../components/CardHistory';
-import Header from '../components/Header';
+import Navbar from '../components/Header';
 import Footer from '../components/Footer';
-// import TabTitle from "../utils/WebDinamis"
-
+import title from '../helper/title';
 class History extends Component {
   render() {
-    // TabTitle('User History')
+    title('History');
+    //   TabTitle("User History");
     return (
       <>
-        <Header />
+        <Navbar />
+        {/* <Header /> */}
         <main className={`${styles['hist-bck']} py-5`}>
           <section>
-            <div className={`${styles['title1']}`}>Let’s see what you have bought!</div>
-            <div className={`${styles['title2']}`}>Long press to delete item</div>
+            <div className={`${styles['title-name']}`}>Let’s see what you have bought!</div>
+            <div className={`${styles['h2']}`}>Long press to delete item</div>
           </section>
           <section className="container col-lg my-5">
             <section className="row justify-content-center">
