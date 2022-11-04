@@ -15,7 +15,7 @@ class NewProduct extends Component {
             <section>
               <div className="row d-flex justify-content-between">
                 <p>
-                  Favorite & Promo <span className={styles['text']}> Add new product</span>
+                  Favorite & Promo <span className={styles['text']}> Add new promo</span>
                 </p>
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mx-auto d-flex align-items-center ">
                   <div className="">
@@ -28,22 +28,29 @@ class NewProduct extends Component {
                       <button className={styles['btn-picture']}>Take a picture</button>
                     </div>
                     <button className={`${styles['btn-galery']} mt-4 `}>Chose from gallery</button>
-                    <h5 className={`${styles['delivery']} mt-5`}>Delivery Hour :</h5>
+                    <h5 className={`${styles['stock']} mt-5`}>Enter the discount :</h5>
+                    <select class="form-select w-100 mt-3" aria-label="Default select example">
+                      <option selected>Input discount</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    <h5 className={`${styles['delivery']} mt-5`}>Expire Date :</h5>
                     <select class="form-select w-100" aria-label="Default select example">
-                      <option selected>Select start hour</option>
+                      <option selected>Select start date</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                     <select class="form-select w-100 mt-3" aria-label="Default select example">
-                      <option selected>Select end hour</option>
+                      <option selected>Select end date</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
-                    <h5 className={`${styles['stock']} mt-5`}>Input stock :</h5>
+                    <h5 className={`${styles['stock']} mt-5`}>Input coupon code :</h5>
                     <select class="form-select w-100 mt-3" aria-label="Default select example">
-                      <option selected>Input stock</option>
+                      <option selected>Input discount</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
@@ -58,11 +65,11 @@ class NewProduct extends Component {
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Price :</label>
-                      <input type="tel" className="form-control h-75" placeholder="type the price" />
+                      <input type="tel" className="form-control h-75" placeholder="type the normal price" />
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Description :</label>
-                      <input type="text" className="form-control h-75" placeholder="describe your product min. 150 characters" />
+                      <input type="text" className="form-control h-75" placeholder="describe your promo min. 150 characters" />
                     </div>
                     <h6 className={styles['size']}>Input product size :</h6>
                     <p className={styles['detail']}>Click methods you want to use for this product</p>
@@ -82,7 +89,7 @@ class NewProduct extends Component {
                       <div className={styles['delivery-methods-ways']}>Take away</div>
                     </div>
                     <div className="row d-flex flex-column pt-5">
-                      <button className={styles['save']}>Save Product</button>
+                      <button className={styles['save']}>Save Promo</button>
                       <button className={styles['cancel']}>Cancel</button>
                     </div>
                   </div>

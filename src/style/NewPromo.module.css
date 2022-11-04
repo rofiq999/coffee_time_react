@@ -31,15 +31,13 @@
   color: #6a4029;
 }
 
-.stock {
+.text-promo {
+  font-weight: 700;
   color: #6a4029;
 }
 
-/* .bor {
-  border: 1px solid black;
-} */
-
 .size {
+  font-weight: 700;
   padding-top: 20px;
   color: #6a4029;
 }
@@ -124,17 +122,4 @@
   border-radius: 10px;
   color: white;
   background-color: #6a4029;
-}
-
-.cancel {
-  width: 45%;
-  height: 45px;
-  margin-left: 10px;
-  font-weight: 700;
-  margin-top: 20px;
-  border: none;
-  border-radius: 10px;
-  color: #4f5665;
-  background-color: #bababa;
-  background: rgba(186, 186, 186, 0.35);
 }

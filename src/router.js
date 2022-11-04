@@ -12,6 +12,8 @@ import ProductDetailAdmin from './pages/Admin/ProductdDetailAdmin';
 import History from './pages/History';
 import Profile from './pages/Profile';
 import NewProduct from './pages/Admin/NewProduct';
+import NewPromo from './pages/Admin/NewPromo';
+import EditPromo from './pages/Admin/EditPromo';
 import PrivateElement from './components/privateElement';
 // import Error from "./pages/Error";
 
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
   { path: '/history', element: <History /> },
   // { path: '/profile', element: <Profile /> },
   { path: '/newproduct', element: <NewProduct /> },
+  { path: '/newpromo', element: <NewPromo /> },
+  { path: '/editpromo', element: <EditPromo /> },
   {
     path: '/profile',
     element: (

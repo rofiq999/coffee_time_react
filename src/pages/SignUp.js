@@ -3,7 +3,8 @@ import Footer from '../components/Footer';
 import title from '../helper/title';
 
 // import Router Link
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import withNavigate from '../helper/withNavigate';
 
 import Axios from 'axios';
 
@@ -112,4 +113,4 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default withNavigate(SignUp);
