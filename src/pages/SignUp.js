@@ -47,7 +47,7 @@ class SignUp extends Component {
       password: this.state.password,
       phone_number: this.state.phone_number,
     };
-    Axios.post(`${process.env.REACT_APP_BACKEND_HOST}/coffe_time/users/`, userObj)
+    Axios.post(`${process.env.REACT_APP_BACKEND_HOST}coffe_time/users/`, userObj)
       .then((res) => {
         console.log(res.data);
         this.props.navigate('/login');
