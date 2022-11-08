@@ -105,7 +105,7 @@ form {
   color: #6a4029;
 }
 
-.div-primary {
+/* .div-primary {
   background-color: #ffba33;
   text-align: center;
   border-radius: 10px;
@@ -116,7 +116,7 @@ form {
   font-weight: 700;
   font-size: 20px;
   text-decoration: none;
-}
+} */
 
 .div-primary a {
   text-decoration: none;
@@ -144,6 +144,20 @@ form {
   flex-direction: row;
 }
 
+.SignUp {
+  background-color: #ffba33;
+  text-align: center;
+  border-radius: 10px;
+  width: 410px;
+  height: 45px;
+  padding: 6px;
+  margin-top: 15px;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+  color: #6a4029;
+  text-decoration: none;
+}
 .free-member {
   position: absolute;
   width: 1140px;

@@ -105,7 +105,10 @@ class SignUp extends Component {
                   <input onChange={this.handlePhoneInput} value={this.state.phone_number} type="tel" name="phone_number" id="phone_number" placeholder="Enter your phone number" required />
                 </div>
                 <a className={styles['div-primary']}>
-                  <button type="sumbit"> Sign Up</button>
+                  <button className={styles['SignUp']} type="sumbit">
+                    {' '}
+                    Sign Up
+                  </button>
                 </a>
                 <a className={styles['input-div-secondary']}>
                   <img src={google} alt="Google" />
