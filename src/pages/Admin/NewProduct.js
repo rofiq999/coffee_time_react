@@ -1,15 +1,36 @@
 import React, { Component, Fragment } from 'react';
 import styles from '../../style/NewProduct.module.css';
-import Header from '../../components/Header';
+import Navbar from '../../components/Header';
+import NavbarNotLogin from '../../components/HeaderNotLogin';
+import NavbarAdmin from '../../components/HeaderAdmin';
 import Footer from '../../components/Footer';
 
 import camera from '../../assets/img/camera.png';
 
 class NewProduct extends Component {
+  state = {
+    products: [],
+    token: localStorage.getItem('token'),
+    role: localStorage.getItem('role'),
+    navLogin: <Navbar />,
+    navAdmin: <NavbarAdmin />,
+    navnotLogin: <NavbarNotLogin />,
+  };
+  navType = () => {
+    if (this.state.token) {
+      if (this.state.role === 'user') {
+        return this.state.navLogin;
+      } else {
+        return this.state.navAdmin;
+      }
+    } else {
+      return this.state.navnotLogin;
+    }
+  };
   render() {
     return (
       <>
-        <Header />
+        <this.navType />;
         <main className="container-fluid">
           <div className="container mb-5">
             <section>

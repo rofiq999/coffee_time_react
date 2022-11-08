@@ -2,14 +2,14 @@ import { legacy_createStore as createStore, applyMiddleware, combineReducers } f
 import logger from 'redux-logger';
 import rpm from 'redux-promise-middleware';
 
-import loginReducer from './reducers/Login';
-import counterReducer from './reducers/Login';
+// import loginReducer from './reducers/Login';
+import counterReducer from './reducers/counter';
 // import bookReducer from './reducers/books';
 
 const middleware = applyMiddleware(rpm, logger);
 const reducers = combineReducers({
   counter: counterReducer,
-  login: loginReducer,
+  // login: loginReducer,
 });
 const store = createStore(reducers, middleware);
 

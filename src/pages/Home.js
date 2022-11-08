@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styles from '../style/Home.module.css';
+import title from '../helper/title';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import HeaderAdmin from '../components/HeaderAdmin';
+import HeaderNotLogin from '../components/HeaderNotLogin';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // footer
@@ -28,14 +33,32 @@ import icon_location from '../assets/img/location.png';
 import icon_person from '../assets/img/user.png';
 import icon_checklist from '../assets/img/ceklisbold.png';
 import icon_check from '../assets/img/ceklissmal.png';
-import icon_coffee from '../assets/img/coffee.png';
-import hamburger from '../assets/img/icon_hamburger.png';
+// import icon_coffee from '../assets/img/coffee.png';
+// import hamburger from '../assets/img/icon_hamburger.png';
 // assets
 class Home extends Component {
+  state = {
+    navLogin: <Header />,
+    navAdmin: <HeaderAdmin />,
+    navnotLogin: <HeaderNotLogin />,
+  };
+
+  navtype = () => {
+    if (localStorage.getItem('token')) {
+      if (localStorage.getItem('role') === 'user') {
+        return this.state.navLogin;
+      } else {
+        return this.state.navAdmin;
+      }
+    } else {
+      return this.state.navnotLogin;
+    }
+  };
   render() {
+    title('Home');
     return (
       <>
-        <header>
+        {/* <header>
           <nav className="navbar bg-light ">
             <section className="container-fluid d-flex justify-content-between align-items-center">
               <Link to="/" className="navbar-brand">
@@ -69,8 +92,8 @@ class Home extends Component {
               </span>
             </section>
           </nav>
-        </header>
-
+        </header> */}
+        <this.navtype />
         <main>
           {/* <!-- jumbotron --> */}
           <section className={`${styles.bg_jumbotron} mx-auto d-flex`}>
@@ -374,6 +397,7 @@ class Home extends Component {
             </section>
           </section>
         </main>
+        <Footer />
       </>
     );
   }

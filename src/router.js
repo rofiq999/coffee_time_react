@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Payment from './pages/Payment';
 import ProductDetail from './pages/ProductDetail';
 import ProductDetailAdmin from './pages/Admin/ProductdDetailAdmin';
+import ProductAdmin from './pages/Admin/ProductAdmin';
 import History from './pages/History';
 import Profile from './pages/Profile';
 import NewProduct from './pages/Admin/NewProduct';
@@ -25,13 +26,12 @@ const router = createBrowserRouter([
   { path: '/product', element: <Product /> },
   { path: '/forgotpass', element: <ForgotPass /> },
   { path: '/payment', element: <Payment /> },
-  { path: '/productdetail', element: <ProductDetail /> },
   { path: '/productdetailadmin', element: <ProductDetailAdmin /> },
   { path: '/history', element: <History /> },
-  // { path: '/profile', element: <Profile /> },
-  { path: '/newproduct', element: <NewProduct /> },
-  { path: '/newpromo', element: <NewPromo /> },
+  // { path: '/newproduct', element: <NewProduct /> },
+  // { path: '/newpromo', element: <NewPromo /> },
   { path: '/editpromo', element: <EditPromo /> },
+  // { path: '/productadmin', element: <ProductAdmin /> },
   {
     path: '/profile',
     element: (
@@ -40,6 +40,48 @@ const router = createBrowserRouter([
       </PrivateElement>
     ),
   },
+
+  {
+    path: '/productdetail/:id',
+    element: (
+      <PrivateElement allowedRoles={['user']}>
+        <ProductDetail />
+      </PrivateElement>
+    ),
+  },
+
+  {
+    path: '/productadmin',
+    element: (
+      <PrivateElement allowedRoles={['admin']}>
+        <ProductAdmin />
+      </PrivateElement>
+    ),
+  },
+  {
+    path: '/newproduct',
+    element: (
+      <PrivateElement allowedRoles={['admin']}>
+        <NewProduct />
+      </PrivateElement>
+    ),
+  },
+  {
+    path: '/newpromo',
+    element: (
+      <PrivateElement allowedRoles={['admin']}>
+        <NewPromo />
+      </PrivateElement>
+    ),
+  },
+  // {
+  //   path: '/editpromo',
+  //   element: (
+  //     <PrivateElement allowedRoles={['admin']}>
+  //       <EditPromo />
+  //     </PrivateElement>
+  //   ),
+  // },
 
   // { path: "/product", element: <product /> },
   // { path: "/home", element: <home /> },

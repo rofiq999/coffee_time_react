@@ -9,6 +9,8 @@ import title from '../helper/title';
 
 // import Router Link
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 //import image
 import logo from '../assets/img/logo.png';
@@ -54,6 +56,18 @@ function Login() {
     setPassword(e.target.value);
   };
 
+  const SuccessToastMessage = () => {
+    toast.success('Login Success !', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
+  const ErrorToastMessage = () => {
+    toast.error('Error Email/Password wrong!', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   const handleApi = (e) => {
     console.log(email, password);
     e.preventDefault();
@@ -63,21 +77,26 @@ function Login() {
         password,
       })
       .then((response) => {
-        alert('Login Success');
-        console.log(response.data.result.data.payload.role);
-        console.log(response.data.result.data.token);
+        // alert('Login Success');
+        // console.log(response.data.result.data.payload.role);
+        // console.log(response.data.result.data.token);
         localStorage.setItem('token', response.data.result.data.token);
         localStorage.setItem('role', response.data.result.data.payload.role);
-        navigate('/');
+        SuccessToastMessage();
+        setTimeout(() => {
+          // Run code
+          navigate('/');
+        }, 5000);
       })
       .catch((err) => {
-        alert('Email or Password is WRONG !!!');
+        ErrorToastMessage();
         console.log(err);
       });
   };
   title('Login');
   return (
     <>
+      <ToastContainer />
       <main className={styles.container}>
         <aside className={styles['side-content']}>
           <img className={styles['side-image']} src={logo} height="900px" width="682px" alt="coffe-shop" />

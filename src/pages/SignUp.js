@@ -5,7 +5,8 @@ import title from '../helper/title';
 // import Router Link
 // import { Link } from 'react-router-dom';
 import withNavigate from '../helper/withNavigate';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 
 import styles from '../style/SignUp.module.css';
@@ -40,6 +41,12 @@ class SignUp extends Component {
     });
   };
 
+  SuccessToastMessage = () => {
+    toast.success('Signup Success !', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
     const userObj = {
@@ -49,10 +56,17 @@ class SignUp extends Component {
     };
     Axios.post(`${process.env.REACT_APP_BACKEND_HOST}coffe_time/users/`, userObj)
       .then((res) => {
-        console.log(res.data);
-        this.props.navigate('/login');
+        // console.log(res.data);
+        this.SuccessToastMessage();
+        setTimeout(() => {
+          // Run code
+          this.props.navigate('/login');
+        }, 2000);
       })
       .catch((err) => {
+        toast.error(err.response.data.msg.err, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         console.log(err);
       });
     this.setState({ email: '', password: '', phone_number: '' });
@@ -62,6 +76,7 @@ class SignUp extends Component {
     title('SignUp');
     return (
       <Fragment>
+        <ToastContainer />
         <main className={styles.container}>
           <aside className={styles['side-content']}>
             <img className={styles['side-image']} src={logo} height="900px" width="682px" alt="coffe-shop" />
