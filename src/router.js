@@ -25,9 +25,9 @@ const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   { path: '/product', element: <Product /> },
   { path: '/forgotpass', element: <ForgotPass /> },
-  { path: '/payment', element: <Payment /> },
   { path: '/productdetailadmin', element: <ProductDetailAdmin /> },
-  { path: '/history', element: <History /> },
+  // { path: '/payment', element: <Payment /> },
+  // { path: '/history', element: <History /> },
   // { path: '/newproduct', element: <NewProduct /> },
   // { path: '/newpromo', element: <NewPromo /> },
   { path: '/editpromo', element: <EditPromo /> },
@@ -37,6 +37,22 @@ const router = createBrowserRouter([
     element: (
       <PrivateElement allowedRoles={[`user`]}>
         <Profile />
+      </PrivateElement>
+    ),
+  },
+  {
+    path: '/history',
+    element: (
+      <PrivateElement allowedRoles={[`user`]}>
+        <History />
+      </PrivateElement>
+    ),
+  },
+  {
+    path: '/payment',
+    element: (
+      <PrivateElement allowedRoles={[`user`]}>
+        <Payment />
       </PrivateElement>
     ),
   },
