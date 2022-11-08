@@ -98,7 +98,7 @@ class Product extends Component {
                         this.onFavorite();
                         this.setState(
                           {
-                            searchParams: { sort: 'favorite' },
+                            searchParams: { category: 'favorite' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -115,7 +115,7 @@ class Product extends Component {
                         this.onCoffee();
                         this.setState(
                           {
-                            searchParams: { sort: 'coffee' },
+                            searchParams: { category: 'coffee' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -132,7 +132,7 @@ class Product extends Component {
                         this.onNonCoffee();
                         this.setState(
                           {
-                            searchParams: { sort: 'non_coffee' },
+                            searchParams: { category: 'non_coffee' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -149,7 +149,7 @@ class Product extends Component {
                         this.onFood();
                         this.setState(
                           {
-                            searchParams: { sort: 'food' },
+                            searchParams: { category: 'food' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -166,7 +166,7 @@ class Product extends Component {
                         this.onAddOn();
                         this.setState(
                           {
-                            searchParams: { sort: 'add_on' },
+                            searchParams: { category: 'add_on' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
