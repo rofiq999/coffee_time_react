@@ -46,7 +46,7 @@ function NavbarAdmin() {
               window.location('/');
             }}
           >
-            <span className="btn btn-secondary bg-primary">Logout</span>
+            <span className="btn btn-secondary bg-warning">Logout</span>
           </Link>
 
           {/* logika jika admin profile tidak ada */}

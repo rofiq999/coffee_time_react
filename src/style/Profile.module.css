@@ -242,6 +242,7 @@ nav .nav__utility a .img_userprofile {
   border: none;
   width: 280px;
   border-bottom: 1px solid #000000;
+  border-radius: 0;
   height: 35px;
   font-size: 1em;
 }
@@ -308,6 +309,7 @@ nav .nav__utility a .img_userprofile {
   height: 50px;
   border: none;
   border-bottom: 1px solid #000000;
+  border-radius: 0;
   text-decoration: none;
 }
 

@@ -30,7 +30,7 @@ class NewProduct extends Component {
   render() {
     return (
       <>
-        <this.navType />;
+        <this.navType />
         <main className="container-fluid">
           <div className="container mb-5">
             <section>
@@ -38,7 +38,7 @@ class NewProduct extends Component {
                 <p>
                   Favorite & Promo <span className={styles['text']}> Add new product</span>
                 </p>
-                <div className="col-xl-4 col-lg-4 col-md-4 col-sm-12 mx-auto d-flex align-items-center ">
+                <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 mx-auto d-flex align-items-center ">
                   <div className="">
                     <div className={`${styles['content-left']} mt-5 d-flex justify-content-center`}>
                       <div className="pt-5">
@@ -50,40 +50,40 @@ class NewProduct extends Component {
                     </div>
                     <button className={`${styles['btn-galery']} mt-4 `}>Chose from gallery</button>
                     <h5 className={`${styles['delivery']} mt-5`}>Delivery Hour :</h5>
-                    <select class="form-select w-100" aria-label="Default select example">
+                    <select className={`${styles['delivery-border']} form-select w-100`} aria-label="Default select example" disabled>
                       <option selected>Select start hour</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
-                    <select class="form-select w-100 mt-3" aria-label="Default select example">
+                    <select className={`${styles['delivery-border']} form-select w-100 mt-3`} aria-label="Default select example" disabled>
                       <option selected>Select end hour</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                     </select>
                     <h5 className={`${styles['stock']} mt-5`}>Input stock :</h5>
-                    <select class="form-select w-100 mt-3" aria-label="Default select example">
+                    <select className={`${styles['stock-input']} form-select w-100 mt-3`} aria-label="Default select example">
                       <option selected>Input stock</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
                     </select>
                   </div>
                 </div>
-                <div className="col-xl-7 col-lg-8 col-md-8 col-sm-12 mx auto">
+                <div className="col-xl-8 col-lg-8 col-md-8 col-sm-12 mx auto">
                   <div className={`${styles['bor']} row d-block pt-5 ps-5 `}>
                     <div className="form-input w-75 pt-5 ">
                       <label className={styles['form-label']}>Name :</label>
-                      <input type="text" className="form-control h-75" placeholder="type product name min.50 characters" />
+                      <input type="text" className={`${styles['form-control']} h-75`} placeholder="type product name min.50 characters" />
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Price :</label>
-                      <input type="tel" className="form-control h-75" placeholder="type the price" />
+                      <input type="tel" className={`${styles['form-control']} h-75`} placeholder="type the price" />
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Description :</label>
-                      <input type="text" className="form-control h-75" placeholder="describe your product min. 150 characters" />
+                      <input type="text" className={`${styles['form-control']} h-75`} placeholder="describe your product min. 150 characters" />
                     </div>
                     <h6 className={styles['size']}>Input product size :</h6>
                     <p className={styles['detail']}>Click methods you want to use for this product</p>
@@ -91,9 +91,6 @@ class NewProduct extends Component {
                       <div className={styles['size-chil']}>R</div>
                       <div className={styles['size-chil']}>L</div>
                       <div className={styles['size-chil-xl']}>XL</div>
-                      <div className={styles['size-chil-gr']}>250 gr</div>
-                      <div className={styles['size-chil-gr']}>300 gr</div>
-                      <div className={styles['size-chil-gr']}>500 gr</div>
                     </div>
                     <h6 className={styles['size']}>Input delivery methods</h6>
                     <p className={styles['detail']}>Click methods you want to use for this product</p>

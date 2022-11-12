@@ -15,7 +15,7 @@ function CardProduct(props) {
         }}
         class={`py-4 position-relative text-wrap ${styles['content-product']}`}
       >
-        <div className="d-flex flex-column align-items-center justify-content-center">
+        <div className={`${styles['card-product']}d-flex flex-column align-items-center justify-content-center`}>
           <img class={styles['list-product-image']} src={`${props.image}`} alt="image_product" />
           <div class={styles['label-promo']}></div>
           <p class={styles.title}>{props.product_name}</p>

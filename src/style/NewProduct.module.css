@@ -1,3 +1,8 @@
+.main {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .text {
   color: #6a4029;
   font-weight: 700;
@@ -137,4 +142,30 @@
   color: #4f5665;
   background-color: #bababa;
   background: rgba(186, 186, 186, 0.35);
+}
+
+@media only screen and (max-width: 576px) {
+  .delivery-border {
+    display: none;
+  }
+  .delivery {
+    display: none;
+  }
+  .stock-input {
+    position: relative;
+    top: 700px;
+  }
+  .stock {
+    position: relative;
+    top: 700px;
+  }
+  .bor {
+    position: relative;
+    bottom: 170px;
+    margin: 0;
+    padding: 0;
+  }
+  .form-control {
+    width: 420px;
+  }
 }

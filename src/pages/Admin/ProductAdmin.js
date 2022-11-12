@@ -121,7 +121,7 @@ class ProductAdmin extends Component {
                         this.onFavorite();
                         this.setState(
                           {
-                            searchParams: { sort: 'favorite' },
+                            searchParams: { category: 'favorite' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -138,7 +138,7 @@ class ProductAdmin extends Component {
                         this.onCoffee();
                         this.setState(
                           {
-                            searchParams: { sort: 'coffee' },
+                            searchParams: { category: 'coffee' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -155,7 +155,7 @@ class ProductAdmin extends Component {
                         this.OnNonCoffee();
                         this.setState(
                           {
-                            searchParams: { sort: 'non_coffee' },
+                            searchParams: { category: 'non_coffee' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -173,7 +173,7 @@ class ProductAdmin extends Component {
                         this.onFood();
                         this.setState(
                           {
-                            searchParams: { sort: 'food' },
+                            searchParams: { category: 'food' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -190,7 +190,7 @@ class ProductAdmin extends Component {
                         this.onAddOn();
                         this.setState(
                           {
-                            searchParams: { sort: 'addons' },
+                            searchParams: { category: 'addons' },
                           },
                           () => {
                             this.props.setSearchParams(this.state.searchParams);
@@ -206,7 +206,7 @@ class ProductAdmin extends Component {
                 <section className=" text-center row d-flex justify-content-center justify-content-md-center justify-content-lg-end flex-wrap justify-content-center align-items-center  ">
                   <div className={`row ${styles['list-content']} d-flex flex-wrap justify-content-start col-12 col-sm-12 col-md-12 `}>
                     {this.state.products.map((item, key) => (
-                      <CardProduct key={`${key}`} id={item.id} params={item.id} product_name={item.product_name} price={this.costToRP(item.price)} size={item.size} image_product={item.image} />
+                      <CardProduct key={`${key}`} id={item.id} params={item.id} product_name={item.product_name} price={this.costToRP(item.price)} size={item.size} image={item.image} />
                     ))}
                   </div>
                 </section>

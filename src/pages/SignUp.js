@@ -69,7 +69,6 @@ class SignUp extends Component {
         });
         console.log(err);
       });
-    this.setState({ email: '', password: '', phone_number: '' });
   };
 
   render() {

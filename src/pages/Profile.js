@@ -16,11 +16,14 @@ import icon_edit from '../assets/img/icon_editpencil.png';
 
 import React, { Component } from 'react';
 import Axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Profile extends Component {
   state = {
     url: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/users`,
-    urlpatch: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/users`,
+    urlLogout: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/auth`,
+    // urlpatch: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/users`,
     email: '',
     phone_number: '',
     addres: '',
@@ -61,31 +64,50 @@ class Profile extends Component {
       });
   }
 
-  submitEditprofile = async (event) => {
-    event.preventDefault();
-    console.log(this.state.response.result);
-    try {
-      const getToken = localStorage.getItem('token');
-      Axios.patch(
-        this.state.url,
-        {
-          display_name: this.state.display_name,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          addres: this.state.addres,
-          image: this.state.image,
-          birthday: this.state.birthday,
-          gender: this.state.gender,
+  submitEditprofile = async () => {
+    // event.preventDefault();
+    // console.log(this.state.response);
+    const getToken = localStorage.getItem('token');
+    Axios.patch(
+      this.state.url,
+      {
+        display_name: this.state.display_name,
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        addres: this.state.addres,
+        image: this.state.image,
+        birthday: this.state.birthday,
+        gender: this.state.gender,
+      },
+      {
+        headers: {
+          'x-access-token': getToken,
         },
-        {
-          headers: {
-            'x-access-token': getToken,
-          },
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+      }
+    )
+      .then(() => {
+        this.setState({ isLoading: false, isEdit: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  handleLogout = () => {
+    const getToken = localStorage.getItem('token');
+    Axios.delete(this.state.urlLogout, {
+      headers: {
+        'x-access-token': getToken,
+      },
+    })
+      .then(console.log('Logout Berhasil'))
+      .catch((err) => console.log(err));
+  };
+
+  LogoutMessage = () => {
+    toast.success('Logout Berhasil !', {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   onEmail = (e) => {
@@ -98,7 +120,7 @@ class Profile extends Component {
     this.setState({ addres: e.target.value });
   };
   onDisplayname = (e) => {
-    this.setState({ displayname: e.target.value });
+    this.setState({ display_name: e.target.value });
   };
   onFirstname = (e) => {
     this.setState({ firstname: e.target.value });
@@ -116,7 +138,7 @@ class Profile extends Component {
     this.setState({ isEdit: false });
   };
   render() {
-    const { display_name, email, phone_number, addres, firstname, lastname, birthday, gender, image } = this.state;
+    let { display_name, email, phone_number, addres, firstname, lastname, birthday, gender, image } = this.state;
     title('Profile');
     return (
       <>
@@ -155,7 +177,7 @@ class Profile extends Component {
                     </div>
                   </div>
                   <div className={`${styles.input__contact} ${styles.column}`}>
-                    <label for="deliv_address">Delivery adress :</label>
+                    <label htmlfor="deliv_address">Delivery adress :</label>
                     <input type="text" name="address" id="address" value={addres} onChange={this.onAddres} disabled={this.state.isEdit} />
                   </div>
                 </section>
@@ -169,15 +191,15 @@ class Profile extends Component {
                   <div className={styles.user__name}>
                     <div className={styles.input__name}>
                       <div className={styles.input__column}>
-                        <label for="displayname">Display name :</label>
+                        <label htmlfor="displayname">Display name :</label>
                         <input type="text" name="displayname" id="displayname" value={display_name} onChange={this.onDisplayname} disabled={this.state.isEdit} />
                       </div>
                       <div className={styles.input__column}>
-                        <label for="first">First name :</label>
+                        <label htmlfor="first">First name :</label>
                         <input type="text" name="first" id="first" value={firstname} onChange={this.onFirstname} disabled={this.state.isEdit} />
                       </div>
                       <div className={styles.input__column}>
-                        <label for="last">Last name :</label>
+                        <label htmlfor="last">Last name :</label>
                         <input type="text" name="last" id="last" value={lastname} onChange={this.onLastname} disabled={this.state.isEdit} />
                       </div>
                     </div>
@@ -213,9 +235,13 @@ class Profile extends Component {
                   </span>
                   <span
                     onClick={() => {
+                      this.handleLogout();
                       localStorage.removeItem('token');
                       localStorage.removeItem('role');
-                      this.props.navigate('/');
+                      this.LogoutMessage();
+                      setTimeout(() => {
+                        this.props.navigate('/login');
+                      }, 2000);
                     }}
                     className={`${styles.btn_utility} ${styles.logout}`}
                   >
