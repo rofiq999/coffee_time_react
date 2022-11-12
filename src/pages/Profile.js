@@ -47,6 +47,14 @@ class Profile extends Component {
         const data = response.data.result.result[0];
         // console.log(response.data.result.result[0].email);
         // console.log(response.msg);
+
+        const bd = new Date(data.birthday);
+        const bd_date = bd.getDate();
+        const bd_month = bd.getMonth();
+        const bd_year = bd.getFullYear();
+        const bd_string = `${bd_date}-${bd_month}-${bd_year}`;
+
+
         this.setState({
           display_name: data.display_name,
           email: data.email,
@@ -54,7 +62,7 @@ class Profile extends Component {
           addres: data.addres,
           firstname: data.firstname,
           lastname: data.lastname,
-          birthday: data.birthday,
+          birthday: bd_string,
           gender: data.gender,
           image: data.image,
         });

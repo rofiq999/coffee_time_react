@@ -28,6 +28,8 @@ class Product extends Component {
     add_on: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/product/?category=add_on`,
     sort: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/product/`,
     searchParams: {},
+    currentPage: 1,
+    totalPage: 1
   };
   costToRP = (price) => {
     return (
@@ -58,6 +60,7 @@ class Product extends Component {
           // console.log(res.data.result);
           // return res.data.result.data[0].image;
         });
+        this.setState({totalPage: res.data.result.totalPage})
       })
       .catch((err) => console.log(err));
   }
@@ -94,10 +97,24 @@ class Product extends Component {
   onSort = (e) => {
     console.log(e.target.value);
     axios
-      .get(this.state.sort)
+      .get(`${this.state.sort}?sort=${e.target.value}`)
       .then((res) => this.setState({ products: res.data.result.data }))
       .catch((err) => console.log(err));
   };
+  getPrevProducts = () => {
+    this.state.currentPage = this.state.currentPage - 1;
+    axios
+      .get(`${this.state.sort}?page=${this.state.currentPage}&limit=12`)
+      .then((res) => this.setState({ products: res.data.result.data }))
+      .catch((err) => console.log(err));
+  };
+  getNextProducts = () => {
+    this.state.currentPage = this.state.currentPage + 1;
+    axios
+      .get(`${this.state.sort}?page=${this.state.currentPage}&limit=12`)
+      .then((res) => this.setState({ products: res.data.result.data }))
+      .catch((err) => console.log(err));
+  }
 
   render() {
     title('Product');
@@ -207,12 +224,12 @@ class Product extends Component {
                     </div>
                   </div>
                   <div>
-                    <select class={`${styles['form-select']} mt-5`} aria-label="Default select example" onChange={'onSort'}>
+                    <select class={`${styles['form-select']} mt-5`} aria-label="Default select example" onChange={this.onSort}>
                       <option selected>sort</option>
-                      <option value="low">expensive</option>
-                      <option value="high">cheapest</option>
+                      <option value="high">expensive</option>
+                      <option value="low">cheapest</option>
                       <option value="newest">newest</option>
-                      <option value="latest">latest</option>
+                      <option value="oldest">oldest</option>
                     </select>
                   </div>
                   <section className={`${styles['card-product']} text-center row d-flex justify-content-center justify-content-md-center justify-content-lg-end flex-wrap justify-content-center align-items-center`}>
@@ -223,8 +240,8 @@ class Product extends Component {
                     </div>
                   </section>
                   <div className={`${styles['paginasi']} container`}>
-                    <button className={`${styles['prev']} bi bi-chevron-left`}>Prev</button>
-                    <button className={`${styles['next']}`}>
+                    <button className={`${styles['prev']} bi bi-chevron-left`} onClick={this.getPrevProducts} disabled={this.state.currentPage == 1}>Prev</button>
+                    <button className={`${styles['next']}`} onClick={this.getNextProducts} disabled={this.state.totalPage == this.state.currentPage}>
                       Next<span class="bi bi-chevron-right"></span>
                     </button>
                   </div>
@@ -407,7 +424,7 @@ export default withSearchParams(withParams(Product));
 //                     </div>
 //                   </div>
 
-//                   <section className=" text-center row d-flex justify-content-between flex-wrap">
+//                   <section className="flex-wrap text-center row d-flex justify-content-between">
 //                     <div className={` ${styles['list-content']} d-flex flex-wrap col-12`}>
 //                       {/* <CardProduct /> */}
 //                       {this.state.products.map((item, key) => (
