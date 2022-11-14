@@ -29,7 +29,7 @@ class Product extends Component {
     sort: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/product/`,
     searchParams: {},
     currentPage: 1,
-    totalPage: 1
+    totalPage: 1,
   };
   costToRP = (price) => {
     return (
@@ -60,7 +60,7 @@ class Product extends Component {
           // console.log(res.data.result);
           // return res.data.result.data[0].image;
         });
-        this.setState({totalPage: res.data.result.totalPage})
+        this.setState({ totalPage: res.data.result.totalPage });
       })
       .catch((err) => console.log(err));
   }
@@ -110,11 +110,12 @@ class Product extends Component {
   };
   getNextProducts = () => {
     this.state.currentPage = this.state.currentPage + 1;
+
     axios
       .get(`${this.state.sort}?page=${this.state.currentPage}&limit=12`)
       .then((res) => this.setState({ products: res.data.result.data }))
       .catch((err) => console.log(err));
-  }
+  };
 
   render() {
     title('Product');
@@ -240,8 +241,10 @@ class Product extends Component {
                     </div>
                   </section>
                   <div className={`${styles['paginasi']} container`}>
-                    <button className={`${styles['prev']} bi bi-chevron-left`} onClick={this.getPrevProducts} disabled={this.state.currentPage == 1}>Prev</button>
-                    <button className={`${styles['next']}`} onClick={this.getNextProducts} disabled={this.state.totalPage == this.state.currentPage}>
+                    <button className={`${styles['prev']} bi bi-chevron-left`} onClick={this.getPrevProducts} disabled={this.state.currentPage === 1}>
+                      Prev
+                    </button>
+                    <button className={`${styles['next']}`} onClick={this.getNextProducts} disabled={this.state.totalPage === this.state.currentPage}>
                       Next<span class="bi bi-chevron-right"></span>
                     </button>
                   </div>

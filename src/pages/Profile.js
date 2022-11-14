@@ -18,6 +18,8 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 class Profile extends Component {
   state = {
@@ -32,6 +34,11 @@ class Profile extends Component {
     lastname: '',
     birthday: '',
     gender: '',
+    display_nameNotChange: null,
+    image: null,
+    displayImage: null,
+    isEditContact: true,
+    show: false,
     isEdit: true,
   };
   componentDidMount() {
@@ -54,9 +61,9 @@ class Profile extends Component {
         const bd_year = bd.getFullYear();
         const bd_string = `${bd_date}-${bd_month}-${bd_year}`;
 
-
         this.setState({
           display_name: data.display_name,
+          display_nameNotChange: data.display_name,
           email: data.email,
           phone_number: data.phone_number,
           addres: data.addres,
@@ -72,32 +79,80 @@ class Profile extends Component {
       });
   }
 
-  submitEditprofile = async () => {
-    // event.preventDefault();
-    // console.log(this.state.response);
+  inputImage = (event) => {
+    // console.log(this.state.image);
+    if (event.target.files && event.target.files[0]) {
+      this.setState({
+        displayImage: URL.createObjectURL(event.target.files[0]),
+        image: event.target.files[0],
+      });
+    }
+  };
+  // submitEditprofile = async () => {
+  //   // event.preventDefault();
+  //   // console.log(this.state.response);
+  //   const getToken = localStorage.getItem('token');
+  //   Axios.patch(
+  //     this.state.url,
+  //     {
+  //       display_name: this.state.display_name,
+  //       firstname: this.state.firstname,
+  //       lastname: this.state.lastname,
+  //       addres: this.state.addres,
+  //       image: this.state.image,
+  //       birthday: this.state.birthday,
+  //       gender: this.state.gender,
+  //     },
+  //     {
+  //       headers: {
+  //         'x-access-token': getToken,
+  //       },
+  //     }
+  //   )
+  //     .then(() => {
+  //       this.setState({ isLoading: false, isEdit: true });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  submitEditprofile = (event) => {
+    event.preventDefault();
     const getToken = localStorage.getItem('token');
-    Axios.patch(
-      this.state.url,
-      {
-        display_name: this.state.display_name,
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        addres: this.state.addres,
-        image: this.state.image,
-        birthday: this.state.birthday,
-        gender: this.state.gender,
+    const { image, addres, display_name, firstname, lastname, gender, birthday } = this.state;
+    let formData = new FormData();
+    if (image) formData.append('image', image);
+    if (addres) formData.append('addres', addres);
+    if (display_name) formData.append('display_name', display_name);
+    if (firstname) formData.append('firstname', firstname);
+    if (lastname) formData.append('lastname', lastname);
+    if (gender) formData.append('gender', gender);
+    if (birthday) formData.append('birthday', birthday);
+    // debug
+    // for (var pair of formData.entries()) {
+    //    console.log(pair[0] + " - " + pair[1]);
+    // }
+    Axios.patch(this.state.url, formData, {
+      headers: {
+        'x-access-token': getToken,
+        'Content-Type': 'multipart/form-data',
       },
-      {
-        headers: {
-          'x-access-token': getToken,
-        },
-      }
-    )
-      .then(() => {
-        this.setState({ isLoading: false, isEdit: true });
+    })
+      .then((response) => {
+        console.log(response.data.msg);
+        toast.success(response.data.msg, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setTimeout(() => {
+          // Run code
+          window.location.reload();
+        }, 1000);
       })
       .catch((err) => {
         console.log(err);
+        toast.err(err.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       });
   };
 
@@ -145,8 +200,10 @@ class Profile extends Component {
   onEdit = () => {
     this.setState({ isEdit: false });
   };
+  handleClose = () => this.setState({ show: false });
+  handleShow = () => this.setState({ show: true });
   render() {
-    let { display_name, email, phone_number, addres, firstname, lastname, birthday, gender, image } = this.state;
+    let { display_name, display_nameNotChange, email, phone_number, addres, firstname, lastname, birthday, gender, image } = this.state;
     title('Profile');
     return (
       <>
@@ -163,9 +220,9 @@ class Profile extends Component {
                     <label for="files" id="lable_file">
                       <img src={icon_edit} alt="icon_edit" />
                     </label>
-                    <input type="file" name="file" className={styles.hidden} id="files" />
+                    <input type="file" name="file" className={styles.hidden} id="files" onChange={this.inputImage} />
                   </div>
-                  <h3>{display_name}</h3>
+                  <h3>{display_nameNotChange}</h3>
                   <p className={styles.user__email}>{email}</p>
                   <p id="order">Has been ordered 15 products</p>
                 </section>
@@ -243,13 +300,14 @@ class Profile extends Component {
                   </span>
                   <span
                     onClick={() => {
-                      this.handleLogout();
-                      localStorage.removeItem('token');
-                      localStorage.removeItem('role');
-                      this.LogoutMessage();
-                      setTimeout(() => {
-                        this.props.navigate('/login');
-                      }, 2000);
+                      this.handleShow();
+                      // this.handleLogout();
+                      // localStorage.removeItem('token');
+                      // localStorage.removeItem('role');
+                      // this.LogoutMessage();
+                      // setTimeout(() => {
+                      //   this.props.navigate('/login');
+                      // }, 2000);
                     }}
                     className={`${styles.btn_utility} ${styles.logout}`}
                   >
@@ -261,136 +319,39 @@ class Profile extends Component {
               </div>
             </div>
           </section>
+          <Modal show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
+            <Modal.Header closeButton>
+              <Modal.Title>confirmation😊</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>are you sure you want to log out?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={this.handleClose}>
+                No ❌
+              </Button>
+              <Button
+                variant="success"
+                className="fw-bold text-bg-success text-white"
+                onClick={() => {
+                  // this.SuccessToastMessage();
+                  this.handleLogout();
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('role');
+                  this.LogoutMessage();
+                  setTimeout(() => {
+                    this.props.navigate('/login');
+                  }, 2000);
+                }}
+              >
+                Yes ✅
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </main>
         <Footer />
+        <ToastContainer />
       </>
     );
   }
 }
-
-// function Profile() {
-//   title('Profile');
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     if (!localStorage.getItem('token')) {
-//       navigate('/login');
-//     }
-//   });
-//   return (
-//     <>
-//       {/* header */}
-//       <Navbar />
-//       {/* header */}
-//       <main className={styles.container}>
-//         <section className={styles.content__bar}>
-//           <h1>User Profile</h1>
-//           <div className={styles.content__profile}>
-//             <div className={styles.content__contact}>
-//               <section className={styles.user__profile}>
-//                 <div className={styles.user__img}>
-//                   <img src={bg_profiles} alt="img_userprofile" />
-//                   <label for="files" id="lable_file">
-//                     <img src={icon_edit} alt="icon_edit" />
-//                   </label>
-//                   <input type="file" name="file" className={styles.hidden} id="files" />
-//                 </div>
-//                 <h3>Zulaikha</h3>
-//                 <p className={styles.user__email}>zulaikha17@gmail.com</p>
-//                 <p id="order">Has been ordered 15 products</p>
-//               </section>
-//               <section className={styles.user__contact}>
-//                 <div className={styles.contact}>
-//                   <h2>Contacts</h2>
-//                   <img src={icon_edit} alt="icon_edit" />
-//                 </div>
-//                 <div className={styles.input__contact}>
-//                   <div className={styles.column}>
-//                     <label for="email">Email adress :</label>
-//                     <input type="email" name="email" id="email" value="zulaikha17@gmail.com" />
-//                   </div>
-//                   <div className={styles.column}>
-//                     <label for="phones">Mobile number :</label>
-//                     <input type="tel" name="phones" id="phones" value="(+62)813456782" />
-//                   </div>
-//                 </div>
-//                 <div className={`${styles.input__contact} ${styles.column}`}>
-//                   <label for="deliv_address">Delivery adress :</label>
-//                   <input type="text" name="deliv_address" id="deliv_address" value="Iskandar Street no. 67 Block A Near Bus Stop" />
-//                 </div>
-//               </section>
-//             </div>
-//             <div className={styles.user__detail_bar}>
-//               <div className={styles.user__detail}>
-//                 <div className={styles.detail}>
-//                   <h2>Details</h2>
-//                   <img src={icon_edit} alt="icon_change" />
-//                 </div>
-//                 <div className={styles.user__name}>
-//                   <div className={styles.input__name}>
-//                     <div className={styles.input__column}>
-//                       <label for="displayname">Display name :</label>
-//                       <input type="text" name="displayname" id="displayname" value="Zulaikha" />
-//                     </div>
-//                     <div className={styles.input__column}>
-//                       <label for="first">First name :</label>
-//                       <input type="text" name="first" id="first" value="Zulaikha" />
-//                     </div>
-//                     <div className={styles.input__column}>
-//                       <label for="last">Last name :</label>
-//                       <input type="text" name="last" id="last" value="Nirmala" />
-//                     </div>
-//                   </div>
-//                   <div className={styles.input__column}>
-//                     <label for="birthday">DD/MM/YYYY :</label>
-//                     <input className={styles.birthday} type="date" name="birthday" id="birthday" value="1990-03-04" />
-//                     <div className={styles.input__radio}>
-//                       <input type="radio" name="gender" id="male" />
-//                       <label for="male" className={styles.radio_label}>
-//                         Male
-//                       </label>
-//                     </div>
-//                     <div className={styles.input__radio}>
-//                       <input type="radio" name="gender" id="female" checked />
-//                       <label for="female" className={styles.radio_label}>
-//                         Female
-//                       </label>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className={styles.user__utility}>
-//                 <h3>Do you want to save the change?</h3>
-//                 <button className={`${styles.btn_utility} ${styles.save}`} type="submit">
-//                   Save Change
-//                 </button>
-//                 <button className={`${styles.btn_utility} ${styles.cancel}`} type="reset">
-//                   Cancel
-//                 </button>
-//                 <span className={`${styles.btn_utility} ${styles.edit}`}>
-//                   <Link to="/forgotpass">Edit Password</Link>
-//                   <i class="bi bi-chevron-right"></i>
-//                 </span>
-//                 <span
-//                   onClick={() => {
-//                     localStorage.removeItem('token');
-//                     localStorage.removeItem('role');
-//                     navigate('/login');
-//                   }}
-//                   className={`${styles.btn_utility} ${styles.logout}`}
-//                 >
-//                   <a>Log out</a>
-
-//                   <i class="bi bi-chevron-right"></i>
-//                 </span>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </main>
-//       <Footer />
-//     </>
-//   );
-// }
 
 export default withNavigate(Profile);
