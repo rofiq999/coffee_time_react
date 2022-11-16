@@ -13,6 +13,7 @@ import ProductAdmin from './pages/Admin/ProductAdmin';
 import History from './pages/History';
 import Profile from './pages/Profile';
 import NewProduct from './pages/Admin/NewProduct';
+import EditProduct from './pages/Admin/EditProduct';
 import NewPromo from './pages/Admin/NewPromo';
 import EditPromo from './pages/Admin/EditPromo';
 import PrivateElement from './components/privateElement';
@@ -79,6 +80,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateElement allowedRoles={['admin']}>
         <NewProduct />
+      </PrivateElement>
+    ),
+  },
+  {
+    path: '/editproduct/:id',
+    element: (
+      <PrivateElement allowedRoles={['admin']}>
+        <EditProduct />
       </PrivateElement>
     ),
   },

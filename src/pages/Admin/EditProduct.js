@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import withParams from '../../helper/withRouteParams';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import styles from '../../style/NewProduct.module.css';
@@ -13,112 +14,68 @@ import Footer from '../../components/Footer';
 
 class NewProduct extends Component {
   state = {
-    products: [],
-    token: localStorage.getItem('token'),
-    role: localStorage.getItem('role'),
+    url: `${process.env.REACT_APP_BACKEND_HOST}coffe_time/product/${this.props.params.id}`,
     product_name: '',
     price: '',
     description: '',
-    size: '',
     stock: '',
-    image: '',
     category: '',
+    image: '',
+    imagePreview: '',
+    display: 'https://res.cloudinary.com/dx7cvqczn/image/upload/v1668147344/coffee_addict/pic_default_product.png',
     navLogin: <Navbar />,
     navAdmin: <NavbarAdmin />,
     navnotLogin: <NavbarNotLogin />,
   };
 
-  selectImage = (e) => {
-    // e.preventDefault();
+  componentDidMount() {
+    this.getProduct();
+  }
+
+  getProduct() {
+    Axios.get(this.state.url)
+      .then((response) => {
+        console.log(response.data.result.data[0].image);
+        this.setState({
+          product_name: response.data.result.data[0].product_name,
+          image: response.data.result.data[0].image,
+          description: response.data.result.data[0].description,
+          size: response.data.result.data[0].size,
+          stock: response.data.result.data[0].stock,
+          price: response.data.result.data[0].price,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  selectImage = () => {
     if (!this.state.image) return this.state.display;
-    return URL.createObjectURL(this.state.image);
+    return this.state.image;
   };
 
   handleFile = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let file = e.target.files[0];
+    let preview = URL.createObjectURL(e.target.files[0]);
     // console.log(file);
-    this.setState({ image: file });
+    this.setState({ image: preview });
+    this.setState({ imagePreview: file });
     // console.log(e.target.files[0]);
     // console.log(URL.createObjectURL(e.target.files[0]));
   };
 
-  handleCancel = (e) => {
-    e.preventDefault();
-    this.setState({
-      product_name: '',
-      price: '',
-      description: '',
-      size: '',
-      stock: '',
-      image: '',
-      category: '',
-    });
-  };
-
-  SuccessMessage = () => {
-    toast.success('Success Create Product !', {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-  LogoutMessage = () => {
-    toast.error('Please, Input product again !', {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
-  postData = () => {
-    const getToken = localStorage.getItem('token');
-    let formdata = new FormData();
-    if (this.state.image) formdata.append('image', this.state.image);
-    if (this.state.product_name) formdata.append('product_name', this.state.product_name);
-    if (this.state.price) formdata.append('price', this.state.price);
-    if (this.state.description) formdata.append('description', this.state.description);
-    if (this.state.size) formdata.append('size', this.state.size);
-    if (this.state.stock) formdata.append('stock', this.state.stock);
-    if (this.state.category) formdata.append('category', this.state.category);
-    Axios.post(`${process.env.REACT_APP_BACKEND_HOST}coffe_time/product`, formdata, {
-      headers: {
-        'x-access-token': getToken,
-      },
-    })
-      .then((response) => {
-        this.SuccessMessage();
-        setTimeout(() => {
-          this.props.navigate('/handlingproduct');
-        }, 1000);
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error('Error Input !', {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-      });
-  };
-
-  valueName = (e) => {
-    this.setState({ product_name: e.target.value });
-  };
-  valuePrice = (e) => {
-    this.setState({ price: e.target.value });
-  };
-  valueDescription = (e) => {
-    this.setState({ description: e.target.value });
-  };
-  valueStock = (e) => {
-    this.setState({ stock: e.target.value, debug: console.log(e.target.value) });
-  };
-  valueSize = (e) => {
-    this.setState({ size: e.target.value, debug: console.log(e.target.value) });
-  };
-  valueCategory = (e) => {
-    this.setState({ category: e.target.value, debug: console.log(e.target.value) });
+  costing = (price) => {
+    return parseFloat(price)
+      .toFixed()
+      .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
   };
 
   navType = () => {
-    if (this.state.token) {
-      if (this.state.role === 'user') {
+    const getToken = localStorage.getItem('token');
+    if (getToken) {
+      if (this.state.role === 'admin') {
         return this.state.navLogin;
       } else {
         return this.state.navAdmin;
@@ -183,11 +140,11 @@ class NewProduct extends Component {
                   <div className={`${styles['bor']} row d-block pt-5 ps-5 `}>
                     <div className="form-input w-75 pt-5 ">
                       <label className={styles['form-label']}>Name :</label>
-                      <input for="" className={`${styles['form-control']} h-75`} type="text" name="name" id="name" value={this.state.name} onChange={this.valueName} placeholder="Type product name min. 50 characters" />
+                      <input for="" className={`${styles['form-control']} h-75`} type="text" name="name" id="name" value={this.state.product_name} placeholder="Type product name min. 50 characters" />
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Price :</label>
-                      <input for="" className={`${styles['form-control']} h-75`} type="number" name="price" id="price" value={this.state.price} onChange={this.valuePrice} placeholder="Type the price" />
+                      <input for="" className={`${styles['form-control']} h-75`} type="number" name="price" id="price" value={this.state.price} placeholder="Type the price" />
                     </div>
                     <div className="form-input w-75 pt-4 ">
                       <label className={styles['form-label']}>Description :</label>
@@ -251,4 +208,4 @@ class NewProduct extends Component {
   }
 }
 
-export default NewProduct;
+export default withParams(NewProduct);

@@ -182,6 +182,52 @@
   color: #ffffff;
 }
 
+.form-sort {
+  width: 100px;
+  opacity: 60;
+}
+
+.paginasi {
+  display: flex;
+  justify-content: space-between;
+}
+.prev {
+  text-align: center;
+  width: 55px;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.next {
+  width: 55px;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.next:hover {
+  background-color: #3e8e41;
+}
+
+.next:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.prev:hover {
+  background-color: #3e8e41;
+}
+
+.prev:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .addNewPromo {
   position: absolute;
   bottom: 0;

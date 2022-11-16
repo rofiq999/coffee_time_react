@@ -97,7 +97,7 @@ class Product extends Component {
   onSort = (e) => {
     console.log(e.target.value);
     axios
-      .get(`${this.state.sort}?sort=${e.target.value}`)
+      .get(`${this.state.sort}?sort=${e.target.value}&limit=12`)
       .then((res) => this.setState({ products: res.data.result.data }))
       .catch((err) => console.log(err));
   };

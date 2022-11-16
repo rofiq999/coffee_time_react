@@ -9,7 +9,8 @@
 
 .imagine {
   border-radius: 2em;
-  width: 4em;
+  width: 100px;
+  height: 100%;
 }
 
 .title {

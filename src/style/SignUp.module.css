@@ -68,7 +68,6 @@ body {
 
 input {
   display: block;
-  height: 10px;
   width: 100%;
   margin-top: 5px;
   border-radius: 10px;
@@ -142,6 +141,22 @@ form {
   justify-content: center;
   align-items: start;
   flex-direction: row;
+}
+
+.icon_eye {
+  position: absolute;
+  left: 400px;
+  bottom: 22px;
+}
+
+.icon_eye_off {
+  position: relative;
+}
+
+.icon_view_off {
+  position: absolute;
+  left: 380px;
+  bottom: 22px;
 }
 
 .SignUp {
@@ -220,7 +235,7 @@ form {
   color: #4f5665;
 }
 
-.footer-content {
+/* .footer-content {
   width: 1440px;
   height: 528px;
   display: flex;
@@ -240,7 +255,7 @@ form {
 .footer-left,
 .footer-right {
   flex: 1;
-}
+} */
 
 .address ol li {
   list-style: none;
@@ -350,6 +365,8 @@ form {
   .free-member {
     width: 687px;
     height: 160px;
+    position: absolute;
+    top: 100%;
     background: #ffffff;
     border-radius: 10px;
     align-items: flex-end;

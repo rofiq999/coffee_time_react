@@ -9,7 +9,7 @@ import coffee from '../assets/img/coffee.png';
 function Footer() {
   return (
     <>
-      <footer className="footer text-black pt-5 pb-5">
+      <footer className="footer text-black">
         <div className="container text-center text-md-left">
           <div className="row text-start text-md-left d-flex flex-column-reverse flex-sm-column-reverse flex-md-row flex-lg-row">
             <div className="col-md-6 col-lg-6 col-xl-3 mx-auto mt-3">

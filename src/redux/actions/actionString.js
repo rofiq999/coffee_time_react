@@ -8,8 +8,6 @@ const actionStrings = {
   pending: `_${ActionType.Pending}`,
   fulfilled: `_${ActionType.Fulfilled}`,
   rejected: `_${ActionType.Rejected}`,
-  Login: 'LOGIN',
-  Logout: 'LOG_OUT',
 };
 
 export default actionStrings;

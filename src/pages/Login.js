@@ -2,10 +2,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import withParams from '../helper/withRouteParams';
 // import withNavigate from '../helper/withNavigate';
 import axios from 'axios';
 import styles from '../style/Login.module.css';
 import title from '../helper/title';
+import Footer from '../components/Footer';
 
 // import Router Link
 import { Link } from 'react-router-dom';
@@ -16,9 +18,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import logo from '../assets/img/logo.png';
 import coffee from '../assets/img/coffee.png';
 import google from '../assets/img/google.png';
-import facebook from '../assets/img/Facebook.png';
-import twitter from '../assets/img/Twitter.png';
-import instagram from '../assets/img/Instagram.png';
+// import facebook from '../assets/img/Facebook.png';
+// import twitter from '../assets/img/Twitter.png';
+// import instagram from '../assets/img/Instagram.png';
 
 import { Icon } from 'react-icons-kit';
 import { view } from 'react-icons-kit/ikons/view';
@@ -107,7 +109,14 @@ function Login() {
               <img src={coffee} alt="coffe-shop" />
               Coffee Time
             </Link>
-            <button className={styles['login']}>Sign Up</button>
+            <button
+              className={styles['login']}
+              onClick={() => {
+                navigate(`/signup`);
+              }}
+            >
+              Sign Up
+            </button>
           </div>
           <p className={styles['sign']}>Login</p>
           <form className={styles['register-form']} id="register" onSubmit={handleApi}>
@@ -116,14 +125,13 @@ function Login() {
                 <label>Email Address:</label>
                 <input className={styles['input-label']} type="text" placeholder="Enter your email address" onChange={handleEmail} />
               </div>
-              <div className={styles['input-div']}>
+              <div className={`${styles['input-div']} ${styles['icon_view']} `}>
                 <label>Password:</label>
                 <input type={type} className={styles['input-label']} placeholder="Enter your Password" onChange={handlePassword} />
-                <span />
-                <span onClick={handleToggle}>
-                  Show Password
+                <span className={`${styles['icon_view_off']}`} onClick={handleToggle}>
                   <Icon icon={icon} />
                 </span>
+                <span />
               </div>
               <Link to="/forgotpass" id="forgot-pass">
                 Forgot Password?
@@ -146,7 +154,8 @@ function Login() {
           <Link className={styles['btn-create']}>Create Now</Link>
         </section>
       </main>
-      <footer className={styles['foot']}>
+      <Footer />
+      {/* <footer className={styles['foot']}>
         <div className={styles['sosmed-detail']}>
           <div className={styles['box']}>
             <div className={styles['back-logo']}></div>
@@ -191,12 +200,12 @@ function Login() {
             </ol>
           </aside>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
 
-export default Login;
+export default withParams(Login);
 // class Login extends Component {
 //   render() {
 //     title('Login');

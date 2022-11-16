@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../style/ProductDetailAdmin.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import prod_cold_brew from '../../assets/img/cold-brew.png';
@@ -62,7 +63,9 @@ function ProductDetailAdmin() {
               <p className={styles.price}>IDR 30.000</p>
             </section>
             <span className={`${styles.cart} mb-3 mb-sm-5 mb-md-5 mb-lg-3`}>Add to Cart</span> <br />
-            <span className={styles.staff}>Edit Product</span>
+            <Link to="/editproduct" className={styles.staff}>
+              Edit Product
+            </Link>
           </article>
           <section className={`${styles.choose_checkout} row justify-content-between flex-md-column flex-lg-row`}>
             <section className={`${styles.size} col-4 text-center ms-0`}>

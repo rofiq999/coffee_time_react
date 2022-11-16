@@ -59,7 +59,7 @@ class Profile extends Component {
         const bd_date = bd.getDate();
         const bd_month = bd.getMonth();
         const bd_year = bd.getFullYear();
-        const bd_string = `${bd_date}-${bd_month}-${bd_year}`;
+        const bd_string = `${bd_year}-${bd_month}-${bd_date}`;
 
         this.setState({
           display_name: data.display_name,
@@ -72,6 +72,7 @@ class Profile extends Component {
           birthday: bd_string,
           gender: data.gender,
           image: data.image,
+          displayImage: data.image,
         });
       })
       .catch((err) => {
@@ -88,34 +89,14 @@ class Profile extends Component {
       });
     }
   };
-  // submitEditprofile = async () => {
-  //   // event.preventDefault();
-  //   // console.log(this.state.response);
-  //   const getToken = localStorage.getItem('token');
-  //   Axios.patch(
-  //     this.state.url,
-  //     {
-  //       display_name: this.state.display_name,
-  //       firstname: this.state.firstname,
-  //       lastname: this.state.lastname,
-  //       addres: this.state.addres,
-  //       image: this.state.image,
-  //       birthday: this.state.birthday,
-  //       gender: this.state.gender,
-  //     },
-  //     {
-  //       headers: {
-  //         'x-access-token': getToken,
-  //       },
-  //     }
-  //   )
-  //     .then(() => {
-  //       this.setState({ isLoading: false, isEdit: true });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+
+  handleFile = (e) => {
+    let file = e.target.files[0];
+    this.setState({ image: file });
+    // console.log(e.target.files[0]);
+    // console.log(URL.createObjectURL(e.target.files[0]));
+  };
+
   submitEditprofile = (event) => {
     event.preventDefault();
     const getToken = localStorage.getItem('token');
@@ -216,7 +197,7 @@ class Profile extends Component {
               <div className={styles.content__contact}>
                 <section className={styles.user__profile}>
                   <div className={styles.user__img}>
-                    <img src={image} alt="img_userprofile" />
+                    <img src={this.state.displayImage} alt="img_userprofile" />
                     <label for="files" id="lable_file">
                       <img src={icon_edit} alt="icon_edit" />
                     </label>
@@ -301,13 +282,6 @@ class Profile extends Component {
                   <span
                     onClick={() => {
                       this.handleShow();
-                      // this.handleLogout();
-                      // localStorage.removeItem('token');
-                      // localStorage.removeItem('role');
-                      // this.LogoutMessage();
-                      // setTimeout(() => {
-                      //   this.props.navigate('/login');
-                      // }, 2000);
                     }}
                     className={`${styles.btn_utility} ${styles.logout}`}
                   >
@@ -321,12 +295,12 @@ class Profile extends Component {
           </section>
           <Modal show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
             <Modal.Header closeButton>
-              <Modal.Title>confirmation😊</Modal.Title>
+              <Modal.Title>confirmation</Modal.Title>
             </Modal.Header>
             <Modal.Body>are you sure you want to log out?</Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" className="fw-bold text-bg-secondary text-white" onClick={this.handleClose}>
-                No ❌
+                No
               </Button>
               <Button
                 variant="success"
@@ -342,7 +316,7 @@ class Profile extends Component {
                   }, 2000);
                 }}
               >
-                Yes ✅
+                Yes
               </Button>
             </Modal.Footer>
           </Modal>

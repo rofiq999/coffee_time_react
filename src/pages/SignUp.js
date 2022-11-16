@@ -14,13 +14,22 @@ import logo from '../assets/img/logo.png';
 import coffee from '../assets/img/coffee.png';
 import google from '../assets/img/google.png';
 
+import { Icon } from 'react-icons-kit';
+import { eye } from 'react-icons-kit/feather/eye';
+import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 class SignUp extends Component {
   state = {
     // input
     email: '',
     password: '',
     phone_number: '',
+    type: 'password',
+    icon: eye,
   };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   handleEmailInput = (e) => {
     this.setState({
@@ -47,6 +56,16 @@ class SignUp extends Component {
     });
   };
 
+  handleToggle = () => {
+    if (this.state.type === 'password') {
+      this.setState({ icon: eye });
+      this.setState({ type: 'text' });
+    } else {
+      this.setState({ icon: eyeOff });
+      this.setState({ type: 'password' });
+    }
+  };
+
   onSubmit = (e) => {
     e.preventDefault();
     const userObj = {
@@ -64,11 +83,12 @@ class SignUp extends Component {
         }, 2000);
       })
       .catch((err) => {
-        toast.error(err.response.data.msg.err, {
+        toast.error(err.response.data.msg, {
           position: toast.POSITION.TOP_RIGHT,
         });
         console.log(err);
       });
+    // this.setState({ email: '', password: '', phone_number: '' });
   };
 
   render() {
@@ -95,9 +115,12 @@ class SignUp extends Component {
                   <label>Email Address:</label>
                   <input onChange={this.handleEmailInput} value={this.state.email} type="email" name="email" id="email" placeholder="Enter your email address" required />
                 </div>
-                <div className={styles['input-div']}>
+                <div className={`${styles['input-div']} ${styles['icon_eye_off']}`}>
                   <label>Password:</label>
-                  <input onChange={this.handlePasswordInput} value={this.state.password} type="password" name="password" id="password" placeholder="Enter your password" required />
+                  <input onChange={this.handlePasswordInput} value={this.state.password} type={this.state.type} name="password" id="password" placeholder="Enter your password" required />
+                  <span className={`${styles['icon_view_off']} me-3`} onClick={this.handleToggle}>
+                    <Icon icon={this.state.icon} />
+                  </span>
                 </div>
                 <div className={styles['input-div']}>
                   <label>Phone Number:</label>
@@ -105,7 +128,6 @@ class SignUp extends Component {
                 </div>
                 <a className={styles['div-primary']}>
                   <button className={styles['SignUp']} type="sumbit">
-                    {' '}
                     Sign Up
                   </button>
                 </a>
